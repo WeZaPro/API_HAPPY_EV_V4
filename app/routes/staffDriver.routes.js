@@ -15,6 +15,11 @@ router.get(
   [authJwt.verifyToken, authJwt.isAdmin],
   staffDriver.getAllStaffDrivers
 );
+router.get(
+  "/dropdownlist",
+  [authJwt.verifyToken, authJwt.isUser],
+  staffDriver.getAllStaffDrivers
+);
 
 module.exports = (app) => {
   app.use("/api/staffDriver", router);
