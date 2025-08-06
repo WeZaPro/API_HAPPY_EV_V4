@@ -22,6 +22,7 @@ const allowedOrigins = [
   "http://localhost:5174",
   "https://booking.wezaapidev.com",
   "https://liff.happyevtravelandtransfer.com",
+  // "https://c2c744980186.ngrok-free.app",
 ];
 
 const corsOptions = {
