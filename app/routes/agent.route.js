@@ -88,6 +88,12 @@ router.get(
   agentController.getAllTaxiPayments
 );
 
+router.get(
+  "/userGetAllTaxiPayments",
+  [authJwt.verifyToken, authJwt.isUser],
+  agentController.getAllTaxiPayments
+);
+
 // confirm from taxi
 router.put(
   "/confirmTaxi/:Happy_Booking_ID",
