@@ -4,7 +4,7 @@ const mysql = require("mysql2/promise");
 //   host: process.env.DB_HOST || "localhost",
 //   user: process.env.DB_USER || "root",
 //   password: process.env.DB_PASSWORD || "",
-//   database: process.env.DB_NAME || "happyEv",
+//   database: process.env.DB_NAME || "happy_ev_taxi",
 //   waitForConnections: true,
 //   connectionLimit: 10,
 //   queueLimit: 0,

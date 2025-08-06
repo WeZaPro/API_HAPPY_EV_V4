@@ -614,10 +614,10 @@ exports.getAllTaxiPayments = async (req, res) => {
 
 exports.getLineTaxiPayments = async (req, res) => {
   const lineUid = req.params.id;
-  console.log("lineUid ", lineUid);
+  // console.log("lineUid ", lineUid);
   try {
     // 🔍 ดึงข้อมูล staffDriver จาก lineUid
-    const payments = await db.taxiPayment.findOne({
+    const payments = await db.taxiPayment.findAll({
       where: { lineId: lineUid },
     });
 
