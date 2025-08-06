@@ -9,6 +9,8 @@ exports.create_staffDriver = async (req, res) => {
     const staffDriver_id = `ST-Driver-${String(Date.now()).slice(-6)}`;
     const { driver, phone, line_name, line_user_id } = req.body;
 
+    console.log("req.body ", req.body);
+
     // 🔍 ตรวจสอบว่า phone หรือ line_user_id ซ้ำหรือไม่
     const existingDriver = await StaffDriver.findOne({
       where: {
