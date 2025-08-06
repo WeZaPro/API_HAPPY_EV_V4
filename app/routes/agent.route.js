@@ -107,5 +107,11 @@ router.post(
   agentController.lineToDriver
 );
 
+router.get(
+  "/getLineTaxiPayments/:id",
+  // [authJwt.verifyToken, authJwt.isAdmin],
+  agentController.getLineTaxiPayments
+);
+
 // happy ************ end
 module.exports = router;

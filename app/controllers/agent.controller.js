@@ -544,6 +544,7 @@ exports.updatePaidStatus = async (req, res) => {
             staffDriver_id: staffDriver.staffDriver_id,
             driver: staffDriver.driver,
             phone: staffDriver.phone,
+            lineId: staffDriver.line_user_id,
             taxi_lpr: updateFields.data.taxi_lpr,
             Booking_ID: updateFields.data.Booking_ID,
             START: updateFields.data.START,
@@ -563,6 +564,9 @@ exports.updatePaidStatus = async (req, res) => {
               trip_type: updateFields.data.trip_type,
             },
           });
+
+          // console.log("existingPayment ", existingPayment);
+          console.log("paymentData ", paymentData);
 
           if (existingPayment) {
             // ✅ มีข้อมูล → update status_paid_taxi
@@ -601,6 +605,36 @@ exports.getAllTaxiPayments = async (req, res) => {
     const payments = await TaxiPayment.findAll({
       order: [["createdAt", "DESC"]],
     });
+    res.status(200).json(payments);
+  } catch (error) {
+    console.error("❌ Error fetching taxi payments:", error);
+    res.status(500).json({ message: "เกิดข้อผิดพลาดในการดึงข้อมูล" });
+  }
+};
+
+exports.getLineTaxiPayments = async (req, res) => {
+  const lineUid = req.params.id;
+  console.log("lineUid ", lineUid);
+  try {
+    // 🔍 ดึงข้อมูล staffDriver จาก lineUid
+    const payments = await db.taxiPayment.findOne({
+      where: { lineId: lineUid },
+    });
+
+    if (!payments) {
+      return res
+        .status(404)
+        .json({ message: "ไม่พบข้อมูลพนักงานจาก LINE UID นี้" });
+    }
+
+    // const phone = staffDriver.phone;
+
+    // // 🔍 ดึง taxiPayment ที่ตรงกับเบอร์โทร
+    // const payments = await db.taxiPayment.findAll({
+    //   where: { phone },
+    //   order: [["createdAt", "DESC"]],
+    // });
+
     res.status(200).json(payments);
   } catch (error) {
     console.error("❌ Error fetching taxi payments:", error);

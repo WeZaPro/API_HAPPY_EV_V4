@@ -16,6 +16,10 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.STRING,
         allowNull: true,
       },
+      lineId: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
       taxi_lpr: {
         type: Sequelize.STRING,
         allowNull: true,
